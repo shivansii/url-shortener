@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SHort URL</title>
+</head>
+<body>
+    <div>
+    <label for="url">Enter URL</label>
+    <input type="text" name="url" id="url" placeholder="URL">
+    <button type="submit" id="shorten-btn">Shorten</button>
+    </div>
+    <div>
+    </div>
+</body>
+
+<script>
+
+    window.onload = function(){
+    let submitBtn=document.getElementById("shorten-btn")
+    submitBtn.addEventListener("click",function(){
+        var req=new XMLHttpRequest()
+    let userUrl=document.getElementById("url").value
+    console.log(userUrl)
+    req.open("POST","/formPost",true)
+    req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    req.send("url="+userUrl)
+    req.onreadystatechange=function(){
+        if(this.readyState==4&&this.status==200){
+            console.log(req.responseText)
+        }
+    }
+    })
+   
+}
+    </script>
+</html>
